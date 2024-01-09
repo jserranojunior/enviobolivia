@@ -1,0 +1,32 @@
+version: "3"
+
+networks:
+  stack_dev:
+    external: true
+
+services:
+  dev_enviobolivia:
+    container_name: "enviobolivia_back"
+    image: golang:1.19.4
+    working_dir: /app
+    volumes:
+      - /mnt/bufalo/dev/enviobolivia/backgo:/app
+
+
+    ports:
+      - "5085:8000"
+    networks:
+      - stack_dev
+    command: "/bin/sh -c 'go install github.com/cespare/reflex@latest && cd /app && reflex -c /app/reflex.conf'"
+
+  sefro_front:
+    container_name: "enviobolivia_front"
+    image: "node:lts-alpine"
+    working_dir: /app
+    networks:
+      - stack_dev
+    volumes:
+      - /mnt/bufalo/dev/enviobolivia/front:/app
+    command: "yarn dev"
+    ports:
+      - "8087:3000"
