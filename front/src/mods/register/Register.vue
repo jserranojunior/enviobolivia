@@ -80,7 +80,7 @@
 <!-- Data de Nascimento -->
 <div class="mb-4">
     <label for="dataNascimento" class="block text-gray-700 text-sm font-bold mb-2">Data de Nascimento</label>
-    <input v-model="register.fields.dtnascimento" type="text" id="dataNascimento" name="dataNascimento" class="w-full px-3 py-2 border rounded" placeholder="dd/mm/yyyy">
+    <input  v-maska="'##/##/####'" v-model="register.fields.dtnascimento" type="text" id="dataNascimento" name="dataNascimento" class="w-full px-3 py-2 border rounded" placeholder="dd/mm/yyyy">
 </div>
 
 <!-- Senha -->
@@ -104,12 +104,12 @@
               <div class="flex">
         <div class="w-1/2 mx-1">
             <a href="/">
-            <div  class="w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-700">Acessar</div>
+            <div  class="w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-700 cursor-pointer">Acessar</div>
         </a>
         </div>
         <div class="w-1/2 mx-1">
            
-            <div class="w-full bg-green-500 text-white p-3 rounded hover:bg-green-700" @click="cadastrar()">Cadastrar</div>
+            <div class="w-full bg-green-500 text-white p-3 rounded hover:bg-green-700 cursor-pointer" @click="cadastrar()">Cadastrar</div>
       
         </div>
     </div>
@@ -124,7 +124,7 @@
 </template>
 <script setup lang="ts">
 import useStore from "../../helpers/stores/store";
-import { onMounted, inject, reactive } from "vue";
+import { onMounted, inject, reactive, watch } from "vue";
 import phoneMask from '../../helpers/mask/phoneMask';
 
 let { register, router, auth } = useStore();
@@ -148,11 +148,29 @@ async function logar() {
     }
   });
 }
+
+function filterDataNascimento(value:string){
+  var value = value.replace(/\D/g, ''); // Remove caracteres não numéricos
+       if (value.length > 0) {
+           value = value.replace(/(\d{2})(\d{2})(\d{4})/, '$1/$2/$3');
+       }
+      return value
+}
 onMounted(() => {
   document.addEventListener("keyup", (event) => {
     if (event.key == "Enter") {
       cadastrar();
     }
   });
+
+  document.addEventListener('DOMContentLoaded', function() {
+   
+   // Adiciona a máscara ao campo de data
+   var dataNascimentoInput = document.getElementById('dataNascimento');
 });
+
+
+});
+
+
 </script>

@@ -59,7 +59,7 @@
             <div class="w-1/2 mx-1">
               <div>
                 <div @click="logar()"
-                  class="w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-700"
+                  class="w-full bg-blue-500 text-white p-3 rounded hover:bg-blue-700 cursor-pointer"
                 >
                   Acessar
                 </div>
@@ -70,7 +70,7 @@
                 
                 
                 <div
-                class="w-full bg-green-500 text-white p-3 rounded hover:bg-green-700"
+                class="w-full bg-green-500 text-white p-3 rounded hover:bg-green-700 cursor-pointer"
                 >
                 Cadastrar
                 </div>

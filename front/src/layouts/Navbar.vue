@@ -12,7 +12,7 @@
       </div>
       <div class="flex-none">
         <nav :class="'flex flex-wrap my-auto'">
-          <router-link class="btn-sm mx-1 btn btn-primary text-white" :to="'/'">Home</router-link>
+          <router-link class="btn-sm mx-1 btn btn-primary text-white" v-if="!auth.checkStateToken()" :to="'/'">Home</router-link>
           <router-link class="btn-sm mx-1 btn btn-primary text-white" :to="'/login'" v-if="!auth.checkStateToken()">Login</router-link>
           <router-link class="btn-sm mx-1 btn btn-primary text-white" :to="'/cadastro'" v-if="!auth.checkStateToken()">Cadastro</router-link>
           <router-link class="btn-sm mx-1 btn btn-primary text-white" :to="'/financeiro'" v-if="acl.checkIfExisteRoutes(4) && auth.checkStateToken()">Financeiro
