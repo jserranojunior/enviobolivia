@@ -1,0 +1,1 @@
+import{_ as e}from"./Login.648b24c6.js";import{e as o,f as a,o as r,g as n}from"./index.7e58be37.js";const _=o({name:"IndexPage",setup(t){return a("Bem vindo ao futuro!"),(s,c)=>(r(),n(e))}});export{_ as default};

@@ -115,12 +115,18 @@ let {auth, router, acl} = useStore()
          }
       })
   }
-  onMounted(() => {
+  onMounted(async() => {
     document.addEventListener('keyup', function (event) {
       if (event.key == "Enter") {
         logar();
       }
     });
+
+    await auth.isLogged().then((res)=>{
+      if(res == true){
+        redirectPageTo("/financeiro")
+      }
+    })
   })
 
 
